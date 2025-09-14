@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>My first three.js app</title>
+    <link rel="icon" href="/media/images/scrollLogo.ico" />
+    <style>
+        .frosted {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0)
+        );
+        backdrop-filter: blur(100px);
+        -webkit-background-filter: blur(10px);
+        border-radius: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      @media all and (min-width: 1301px) and (max-width: 1500px) {
+        html {
+          font-size: 1.125rem;
+        }
+      }
+
+      @media all and (min-width: 1501px) and (max-width: 2500px) {
+        html {
+          font-size: 1.25rem;
+        }
+      }
+
+      @media all and (min-width: 2501px) and (max-width: 4000px) {
+        html {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media all and (min-width: 4001px) and (max-width: 5000px) {
+        html {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media all and (min-width: 5001px) {
+        html {
+          font-size: 3.5rem;
+        }
+      }
+
+      @media all and (max-width: 56.25rem) {
+        h1 {
+          font-size: 2.4rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media all and (max-width: 31.25rem) {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+      ul {
+        list-style-type: none;
+        padding: 2.125rem;
+      }
+
+      li {
+        display: inline-block;
+        margin: 0 0.8rem;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      a:hover {
+        font-weight: bold;
+        background: -webkit-linear-gradient(#ff0f7b, #f89b29);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      button {
+        outline: none;
+        cursor: pointer;
+      }
+
+      ::selection {
+        background: rgb(0, 153, 255);
+      }
+      /* Nav */
+      .nav-container {
+        position: fixed;
+        border-radius: 25px;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5.625rem;
+        z-index: 1;
+        width: 70%;
+        margin: 0 auto;
+        background-color: rgba(0, 4, 40, 0.3); 
+      }
+
+      .nav-container > .glass-content {
+        background-color: rgba(0, 4, 40, 0.3);
+      }
+
+      .left-menu {
+        position: absolute;
+        left: 5%;
+        top: 0;
+        bottom: 0;
+        height: 1.5625rem;
+        margin: auto;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .nav-content {
+        margin: 0 auto 0 8.7rem;
+        max-width: 62.5rem;
+        min-height: 5.375rem;
+        position: relative;
+        width: 80%;
+      }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            background: linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%);
+            height: 100vh;
+            overflow: hidden;
+        }
+        .center{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            background: white;
+            border-radius: 10px;
+        }
+        .center h1 {
+            text-align: center;
+            padding: 0 0 20px 0;
+            border-bottom: 1px solid silver;
+        }
+        .center form {
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+        form .txt_field{
+            position: relative;
+            border-bottom: 2px solid #adadad;
+            margin: 30px 0;
+        }
+        .txt_field input{
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            background: none;
+            outline: none;
+        }
+        .txt_field label{
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            color: #adadad;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: .5s;
+        }
+        .txt_field span::before{
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #2691d9;
+            transition: .5s;
+
+        }
+        .txt_field input:focus ~ label,
+        .txt_field input:valid ~ label{
+            top: -5px;
+            color: black;
+        }
+        .txt_field input:focus ~ span::before,
+        .txt_field input:valid ~ span::before{
+            width: 100%;
+        }
+        .pass {
+            margin: -5px 0 20px 5px;
+            color: #a6a6a6;
+            cursor: pointer;
+        }
+        .pass:hover{
+            text-decoration: underline;
+        }
+        input[type="submit"]{
+            width: 100%;
+            height: 50px;
+            border: 1px solid;
+            background: linear-gradient(90deg, #614385 0%, #516395 100%);
+            border-radius: 25px;
+            font-size: 18px;
+            color: #e9f4fb;
+            font-weight: 700;
+            cursor: pointer;
+            outline: none;
+        }
+        input[type="submit"]:hover{
+            transition: 2s;
+            border-color: #2691d9;
+            
+        }
+        .signup_link{
+            margin: 30px 0;
+            text-align: center;
+            font-size: 16px;
+            color: #666666;
+        }
+        .signup_link a{
+            color: #2691d9;
+            text-decoration: none;
+        }
+        .signup_link a:hover{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="frosted nav-container">
+          <a href=""
+            ><img
+              class="material-icons left-menu logo"
+              src="/media/images/scrollLogo.png"
+          /></a>
+          <ul class="nav-content">
+            <li><a href="/">Home</a></li>
+            <li><a href="/home">Dashboard</a></li>
+            <li><a href="/mission">Our Mission</a></li>
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+    </div>
+    <div class = "center">
+        <h1>Register</h1>
+        <form method = "POST" action="">
+            {% csrf_token %}
+
+            <div class = "txt_field">
+                    {{ form.username }}
+                    <label>Username<label>  
+                    <span></span>
+            </div>
+            <div class = "txt_field">
+                    {{form.email}}
+                    <label>Email</label>
+            </div>
+               
+            <div class = "txt_field">
+                    {{ form.password1 }}
+                    <label>Password<label>
+                    <span></span>
+            </div>
+            <div class = "txt_field">
+                    {{ form.password2 }}
+                    <label>Confirm Password<label>
+                    <span></span>
+            </div>
+            <input type = "submit" name = "Register">
+            <div class = "signup_link">
+                Already have an account? <a href = "/login">Log in</a>
+        </form>
+        {{ form.errors }}
+    </div>
+    <script>
+      /* Because i didnt set placeholder values in forms.py they will be set here using vanilla Javascript
+		//We start indexing at one because CSRF_token is considered and input field 
+		 */
+
+      //Query All input fields
+      var form_fields = document.getElementsByTagName("input");
+
+      for (var field in form_fields) {
+        form_fields[field].className += " form-control";
+      }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <link rel="icon" href="/media/images/scrollLogo.ico" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Daily Scroll</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <script
+      src="https://kit.fontawesome.com/cb1d837593.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      .frosted {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.2),
+          rgba(255, 255, 255, 0)
+        );
+        backdrop-filter: blur(100px);
+        -webkit-background-filter: blur(10px);
+        border-radius: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      @media all and (min-width: 1301px) and (max-width: 1500px) {
+        html {
+          font-size: 1.125rem;
+        }
+      }
+
+      @media all and (min-width: 1501px) and (max-width: 2500px) {
+        html {
+          font-size: 1.25rem;
+        }
+      }
+
+      @media all and (min-width: 2501px) and (max-width: 4000px) {
+        html {
+          font-size: 1.8rem;
+        }
+      }
+
+      @media all and (min-width: 4001px) and (max-width: 5000px) {
+        html {
+          font-size: 2.5rem;
+        }
+      }
+
+      @media all and (min-width: 5001px) {
+        html {
+          font-size: 3.5rem;
+        }
+      }
+
+      body {
+        margin: 0;
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2.25rem;
+      }
+
+      h1,
+      h2 {
+        font-weight: 100;
+      }
+
+      @media all and (max-width: 56.25rem) {
+        h1 {
+          font-size: 2.4rem;
+        }
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      @media all and (max-width: 31.25rem) {
+        h1 {
+          font-size: 2rem;
+        }
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 2.125rem;
+      }
+
+      li {
+        display: inline-block;
+        margin: 0 0.8rem;
+        cursor: pointer;
+      }
+
+      a {
+        text-decoration: none;
+        color: #000;
+      }
+
+      a:hover {
+        font-weight: bold;
+        background: -webkit-linear-gradient(#ff0f7b, #f89b29);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      button {
+        outline: none;
+        cursor: pointer;
+      }
+
+      ::selection {
+        background: rgb(0, 153, 255);
+      }
+
+      #app {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: black;
+        margin: 0;
+        overflow: auto;
+      }
+
+      /* Nav */
+      .nav-container {
+        position: fixed;
+        border-radius: 25px;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5.625rem;
+        z-index: 1;
+        width: 70%;
+        margin: 0 auto;
+        background-color: rgba(0, 4, 40, 0.3);
+      }
+
+      .nav-container > .glass-content {
+        background-color: rgba(255, 255, 255, 0.3);
+      }
+
+      .left-menu {
+        position: absolute;
+        left: 5%;
+        top: 0;
+        bottom: 0;
+        height: 1.5625rem;
+        margin: auto;
+        cursor: pointer;
+        font-size: 1.5rem;
+      }
+
+      .nav-content {
+        margin: 0 auto 0 8.7rem;
+        max-width: 62.5rem;
+        min-height: 5.375rem;
+        position: relative;
+        width: 80%;
+      }
+
+      @media all and (max-width: 50.625rem) {
+        .nav-content li {
+          display: none;
+        }
+      }
+
+      .nav-cta {
+        border: solid 0.125rem rgb(0, 153, 255);
+        border-radius: 0.1875rem;
+        padding: 0 1.875rem;
+        background: transparent;
+        color: rgb(0, 153, 255);
+        font-size: 1rem;
+        position: absolute;
+        right: 4%;
+        height: 2.75rem;
+        margin: auto;
+        top: 0;
+        bottom: 0;
+      }
+
+      /* Hero */
+      .hero-container {
+        background-color: rgb(141, 141, 141);
+        background-image: url("/media/images/index_top_img.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+        color: black;
+        height: 0;
+        padding-bottom: 55%;
+        text-align: left;
+        overflow: hidden;
+      }
+
+      .hero-value-add {
+        display: block;
+        margin: 0 20% 0 auto;
+        width: 25rem;
+        padding: 3.125rem;
+        margin-top: 18%;
+        background: linear-gradient(90deg, #000428 0%, #004e92 100%);
+      }
+
+      .hero-value-add h1 {
+        margin: 0;
+        font-weight: bold;
+        background: -webkit-linear-gradient(#ff0f7b, #f89b29);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero-value-add h1 ::selection {
+        background: white;
+      }
+
+      .hero-details {
+        padding: 1.25rem 0;
+        color: white;
+      }
+
+      @media all and (max-width: 56.25rem) {
+        .hero-container {
+          height: 40rem;
+          padding-top: 2rem;
+          background-position: 30% 0px;
+          background-size: auto 120%;
+        }
+        .hero-value-add {
+          margin-right: 12%;
+          margin-top: 9rem;
+          width: 18rem;
+          padding: 1.5rem;
+          padding-top: 2rem;
+        }
+      }
+
+      @media all and (max-width: 31.25rem) {
+        .nav-container {
+          height: 4.5rem;
+        }
+        .hero-container {
+          padding-bottom: 110%;
+          background-position: 30% 0px;
+          background-size: auto 116%;
+        }
+        .hero-value-add {
+          margin-right: auto;
+          margin-left: auto;
+          margin-top: 21%;
+          width: 80%;
+          padding-top: 5%;
+        }
+      }
+
+      .hero-cta {
+        color: white;
+        border-radius: 0.1875rem;
+        border: none;
+        background-color: rgb(0, 153, 255);
+        font-size: 1.25rem;
+        padding: 0.625rem 1.875rem;
+        height: 3.125rem;
+      }
+
+      /* Extras */
+      .extra-container {
+        background: white;
+        height: 21.875rem;
+      }
+
+      .extra-content {
+        padding: 2.5rem 13.2rem;
+        max-width: 62.5rem;
+        margin: 0 auto;
+      }
+
+      .extra-container h2 {
+        text-align: center;
+        background: -webkit-linear-gradient(#cc2b5e, #753a88);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+
+      .extra-container p {
+        text-align: center;
+        padding: 0 0 1.875rem 0;
+        line-height: 1.7;
+      }
+
+      .extra-container button {
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+        position: static;
+      }
+
+      .icon-list {
+        display: flex;
+        justify-content: center;
+        padding: 2% 10%;
+        font-size: 2.875rem;
+      }
+
+      .icon-list li {
+        overflow: hidden;
+        width: 1em;
+      }
+
+      .icon-list i {
+        margin-left: -3em;
+        font-size: 1em;
+      }
+
+      @media all and (max-width: 46.875rem) {
+        .extra-content {
+          padding: 2.5rem 15%;
+        }
+      }
+
+      @media all and (max-width: 31.25rem) {
+        .extra-content {
+          padding: 2.5rem 10%;
+        }
+        .icon-list {
+          padding-right: 7%;
+          padding-left: 7%;
+          font-size: 2.4rem;
+        }
+      }
+
+      .extra-container-1 {
+        height: 0;
+        padding-bottom: 66.6%;
+        background: linear-gradient(90deg, #fc466b 0%, #3f5efb 100%);
+        background-repeat: no-repeat;
+        background-size: 100%;
+      }
+      .extra-container-1 h2 {
+        text-align: center;
+        background: black;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+
+      .extra-container-1 p {
+        color: white;
+        text-align: center;
+      }
+
+      @media (min-width: 48.125rem) {
+        .extra-container-1 {
+          height: 0;
+          padding-bottom: 40%;
+        }
+      }
+
+      .extra-container-2 {
+        height: 25rem;
+        padding-top: 0.625rem;
+        background: rgb(255, 255, 255);
+        color: rgb(0, 153, 255);
+      }
+
+      .super-header {
+        height: 100vh;
+        background: rgb(206, 211, 212);
+        position: fixed;
+        top: -100vh;
+        left: 0;
+        right: 0;
+      }
+
+      .footer {
+        height: 28.125rem;
+        background: linear-gradient(90deg, #000428 0%, #004e92 100%);
+      }
+
+      .footer ul {
+        color: white;
+        padding: 6.25rem 0;
+      }
+
+      .footer li {
+        text-align: center;
+        display: block;
+        padding: 0.625rem;
+        margin: 0.625rem;
+      }
+
+      .sub-footer {
+        height: 100vh;
+        background: rgb(82, 82, 82);
+        position: fixed;
+        bottom: -100vh;
+        left: 0;
+        right: 0;
+      }
+      .logo {
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="super-header"></div>
+    <frosted-glass-container stretch="true">
+      <div id="app">
+        <div class="frosted nav-container">
+          <a href=""
+            ><img
+              class="material-icons left-menu logo"
+              src="/media/images/scrollLogo.png"
+          /></a>
+          <ul class="nav-content">
+            <li><a href="/">Home</a></li>
+            <li><a href="/home">Dashboard</a></li>
+            <li><a href="/mission">Our Mission</a></li>
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/contact">Contact Us</a></li>
+          </ul>
+    </div>
+        <div class="hero-container">
+          <div class="frosted hero-value-add">
+            <h1>The Daily Scroll</h1>
+            <div class="hero-details">
+              All your favorite information in one daily update to keep your
+              time wasting low and your productivity high.
+            </div>
+          </div>
+        </div>
+        <div class="extra-container">
+          <div class="extra-content">
+            <h2>What we do.</h2>
+            <p>
+              We are a website that gives you a short compilation of the new
+              content on the internet to save you time and effort. Increase your
+              productivity and mental health by cutting down time that is spent
+              scrolling (get it?) on your social platform of choice.
+            </p>
+          </div>
+        </div>
+        <div class="extra-container-1">
+          <br /><br /><br /><br />
+          <h2>Your Update. Your Way.</h2>
+          <p>Your favorite platforms for peak personalization</p>
+          <div class="extra-content">
+            <ul class="icon-list">
+              <a href="https://www.reddit.com"
+                ><li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                      d="M201.5 305.5c-13.8 0-24.9-11.1-24.9-24.6 0-13.8 11.1-24.9 24.9-24.9 13.6 0 24.6 11.1 24.6 24.9 0 13.6-11.1 24.6-24.6 24.6zM504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zm-132.3-41.2c-9.4 0-17.7 3.9-23.8 10-22.4-15.5-52.6-25.5-86.1-26.6l17.4-78.3 55.4 12.5c0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.3 24.9-24.9s-11.1-24.9-24.9-24.9c-9.7 0-18 5.8-22.1 13.8l-61.2-13.6c-3-.8-6.1 1.4-6.9 4.4l-19.1 86.4c-33.2 1.4-63.1 11.3-85.5 26.8-6.1-6.4-14.7-10.2-24.1-10.2-34.9 0-46.3 46.9-14.4 62.8-1.1 5-1.7 10.2-1.7 15.5 0 52.6 59.2 95.2 132 95.2 73.1 0 132.3-42.6 132.3-95.2 0-5.3-.6-10.8-1.9-15.8 31.3-16 19.8-62.5-14.9-62.5zM302.8 331c-18.2 18.2-76.1 17.9-93.6 0-2.2-2.2-6.1-2.2-8.3 0-2.5 2.5-2.5 6.4 0 8.6 22.8 22.8 87.3 22.8 110.2 0 2.5-2.2 2.5-6.1 0-8.6-2.2-2.2-6.1-2.2-8.3 0zm7.7-75c-13.6 0-24.6 11.1-24.6 24.9 0 13.6 11.1 24.6 24.6 24.6 13.8 0 24.9-11.1 24.9-24.6 0-13.8-11-24.9-24.9-24.9z"
+                    />
+                  </svg></li
+              ></a>
+              <a href="https://www.facebook.com"
+                ><li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                      d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"
+                    />
+                  </svg></li
+              ></a>
+              <a href="https://www.instagram.com"
+                ><li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+                    <path
+                      d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                    />
+                  </svg></li
+              ></a>
+              <a href="https://www.youtube.com"
+                ><li>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg>
+                  </svg></li
+              ></a>
+            </ul>
+          </div>
+        </div>
+       
+        <div class="footer">
+          <ul>
+            <li>Sign In / Make Account</li>
+            <br />
+            <li>Our Mission</li>
+            <br />
+            <li>Contact Us</li>
+            <br />
+          </ul>
+        </div>
+      </div>
+    </frosted-glass-container>
+    <div class="sub-footer"></div>
+  </body>
+</html>
